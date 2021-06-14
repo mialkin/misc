@@ -8,6 +8,8 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Jwt.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class AccountController : Controller
     {
         // тестовые данные вместо использования базы данных
