@@ -1,5 +1,7 @@
+using HealthChecks.Configs;
 using HealthChecks.HealthChecks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,7 +30,9 @@ namespace HealthChecks
             services.ConfigureRedis(Configuration);
 
             services.AddHealthChecks()
-                .AddCheck<RedisHealthCheck>("Redis-check", null, new[] {"tag1", "tag2"});
+                 //.AddRedis(Configuration.GetSection("Redis").Get<RedisConfig>().ConnectionString, "Redis-NuGet-check"); // AspNetCore.HealthChecks.Redis implementation
+                .AddCheck<RedisHealthCheck>("Redis-check")
+                .AddCheck<SqlServerHealthCheck>("SqlServer-check");
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -51,6 +55,8 @@ namespace HealthChecks
                 endpoints.MapControllers();
                 endpoints.MapHealthChecks("/hc");
             });
+
+            //app.UseHealthChecks("/hc");
         }
     }
 }
