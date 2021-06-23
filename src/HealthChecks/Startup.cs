@@ -1,3 +1,4 @@
+using HealthChecks.HealthChecks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,11 @@ namespace HealthChecks
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "HealthChecks", Version = "v1"});
             });
+
+            services.ConfigureRedis(Configuration);
+
+            services.AddHealthChecks()
+                .AddCheck<RedisHealthCheck>("Redis-check", null, new[] {"tag1", "tag2"});
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -40,7 +46,11 @@ namespace HealthChecks
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHealthChecks("/hc");
+            });
         }
     }
 }
