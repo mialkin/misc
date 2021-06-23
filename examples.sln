@@ -6,8 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleMisc", "src\ConsoleM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthChecks", "src\HealthChecks\HealthChecks.csproj", "{50110DE2-EC87-48D3-8F1F-32C45E940C03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthChecks.Ui", "src\HealthChecks.Ui\HealthChecks.Ui.csproj", "{38C8F577-98CE-4A9E-B30D-B8932EFFA078}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +24,5 @@ Global
 		{50110DE2-EC87-48D3-8F1F-32C45E940C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50110DE2-EC87-48D3-8F1F-32C45E940C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50110DE2-EC87-48D3-8F1F-32C45E940C03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{38C8F577-98CE-4A9E-B30D-B8932EFFA078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{38C8F577-98CE-4A9E-B30D-B8932EFFA078}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{38C8F577-98CE-4A9E-B30D-B8932EFFA078}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{38C8F577-98CE-4A9E-B30D-B8932EFFA078}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
