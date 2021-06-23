@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jwt", "src\Jwt\Jwt.csproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleMisc", "src\ConsoleMisc\ConsoleMisc.csproj", "{083B04B9-1821-4A1E-88EA-2D8A291973EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthChecks", "src\HealthChecks\HealthChecks.csproj", "{50110DE2-EC87-48D3-8F1F-32C45E940C03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{083B04B9-1821-4A1E-88EA-2D8A291973EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{083B04B9-1821-4A1E-88EA-2D8A291973EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{083B04B9-1821-4A1E-88EA-2D8A291973EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50110DE2-EC87-48D3-8F1F-32C45E940C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50110DE2-EC87-48D3-8F1F-32C45E940C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50110DE2-EC87-48D3-8F1F-32C45E940C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50110DE2-EC87-48D3-8F1F-32C45E940C03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
