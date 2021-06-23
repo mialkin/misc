@@ -30,9 +30,9 @@ namespace HealthChecks
             services.ConfigureRedis(Configuration);
 
             services.AddHealthChecks()
-                 //.AddRedis(Configuration.GetSection("Redis").Get<RedisConfig>().ConnectionString, "Redis-NuGet-check"); // AspNetCore.HealthChecks.Redis implementation
-                .AddCheck<RedisHealthCheck>("Redis-check")
-                .AddCheck<SqlServerHealthCheck>("SqlServer-check");
+                //.AddRedis(Configuration.GetSection("Redis").Get<RedisConfig>().ConnectionString, "Redis-NuGet-check"); // AspNetCore.HealthChecks.Redis implementation
+                .AddCheck<RedisHealthCheck>("Redis-check");
+            //.AddCheck<SqlServerHealthCheck>("SqlServer-check");
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

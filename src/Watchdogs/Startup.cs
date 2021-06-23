@@ -21,7 +21,7 @@ namespace Watchdogs
         {
             services.AddControllers();
             services
-                .AddHealthChecksUI()
+                .AddHealthChecksUI(x => x.SetEvaluationTimeInSeconds(5))
                 .AddInMemoryStorage();
             
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Watchdogs", Version = "v1"}); });
