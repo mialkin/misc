@@ -17,4 +17,19 @@ At the time of this writing, Kubernetes supports three mechanisms for implementi
 
 A probe has a number of configuration parameters to control its behaviour, like how often to execute the probe; how long to wait after starting the container to initiate the probe; the number of seconds after which the probe is considered failed; and how many times the probe can fail before giving up. For a liveness probe, giving up means the pod will be restarted. For a readiness probe, giving up means not routing traffic to the pod, but the pod is not restarted. Liveness and readiness probes can be used in conjunction.
 
+## On readiness probes
+
+The Kubernetes documentation, as well as many blog posts and examples, somewhat misleadingly emphasizes the use of the readiness probe when starting a container. This is usually the most common consideration—we want to avoid routing requests to the pod until it is ready to accept traffic. However, the readiness probe will continue to be called throughout the lifetime of the container, every `periodSeconds`, so that the container can make itself temporarily unavailable when one of its dependencies is unavailable, or while running a large batch job, performing maintenance, or something similar.
+
+## On liveness probes
+
+Recommendations:
+
+- Avoid checking dependencies in liveness probes. Liveness probes should be inexpensive and have response times with minimal variance.
+- Set liveness-probe timeouts conservatively, so that system dynamics can temporarily or permanently change, without resulting in excessive liveness probe failures. Consider setting liveness-probe timeouts the same magnitude as client timeouts.
+- Set the `initialDelaySeconds` parameter conservatively, so that containers can be reliably restarted, even as startup dynamics change over time.
+- Regularly restart containers to exercise startup dynamics and avoid unexpected behavioural changes during initialization.
+
+## Links
+
 [↑ Kubernetes Liveness and Readiness Probes: How to Avoid Shooting Yourself in the Foot](https://blog.colinbreck.com/kubernetes-liveness-and-readiness-probes-how-to-avoid-shooting-yourself-in-the-foot)
