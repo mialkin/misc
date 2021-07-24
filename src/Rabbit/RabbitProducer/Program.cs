@@ -13,13 +13,13 @@ namespace RabbitProducer
         {
             var factory = new ConnectionFactory {HostName = "localhost"};
             var connection = factory.CreateConnection();
-            _channel = connection.CreateModel();
+            _channel = connection.CreateModel();  
             _channel.QueueDeclare(queue: "hello", durable: false, exclusive: false, autoDelete: false, arguments: null);
 
-            await Task.Run(Function);
+            await Task.Run(ProducingFunction);
         }
 
-        private static async Task Function()
+        private static async Task ProducingFunction()
         {
             while (true)
             {
