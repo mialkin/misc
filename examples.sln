@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rabbit", "Rabbit", "{FCAF13
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitProducerWorker", "src\Rabbit\RabbitProducerWorker\RabbitProducerWorker.csproj", "{F59BEF8E-17D3-4987-A873-BFDBE863F0E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitConsumerWorker", "src\Rabbit\RabbitConsumerWorker\RabbitConsumerWorker.csproj", "{9C894B35-35FC-49A3-84D9-2B58E507AB72}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,10 +42,15 @@ Global
 		{F59BEF8E-17D3-4987-A873-BFDBE863F0E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F59BEF8E-17D3-4987-A873-BFDBE863F0E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F59BEF8E-17D3-4987-A873-BFDBE863F0E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C894B35-35FC-49A3-84D9-2B58E507AB72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C894B35-35FC-49A3-84D9-2B58E507AB72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C894B35-35FC-49A3-84D9-2B58E507AB72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C894B35-35FC-49A3-84D9-2B58E507AB72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{50110DE2-EC87-48D3-8F1F-32C45E940C03} = {48A3098B-AF74-43EE-9466-967C66D8AC15}
 		{8D03B8D6-4126-46BF-B425-E0D3E7442738} = {48A3098B-AF74-43EE-9466-967C66D8AC15}
 		{F59BEF8E-17D3-4987-A873-BFDBE863F0E7} = {FCAF13CC-0E2B-4944-8034-09A371500DCA}
+		{9C894B35-35FC-49A3-84D9-2B58E507AB72} = {FCAF13CC-0E2B-4944-8034-09A371500DCA}
 	EndGlobalSection
 EndGlobal
