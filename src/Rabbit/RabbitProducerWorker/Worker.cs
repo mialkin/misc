@@ -13,7 +13,7 @@ namespace RabbitProducerWorker
     {
         private readonly ILogger<Worker> _logger;
         private static IModel? _channel;
-        private ProducerConfig _producerConfig;
+        private readonly ProducerConfig _producerConfig;
 
         public Worker(ILogger<Worker> logger, IOptions<ProducerConfig> producerConfigOptions)
         {
@@ -38,7 +38,9 @@ namespace RabbitProducerWorker
 
                 var body = Encoding.UTF8.GetBytes(message);
 
-                _channel.BasicPublish(exchange: "", routingKey: _producerConfig.RoutingKey, basicProperties: null,
+                var properties = _channel.CreateBasicProperties();
+                properties.Persistent = true;
+                _channel.BasicPublish(exchange: "", routingKey: _producerConfig.RoutingKey, basicProperties: properties,
                     body: body);
 
                 await Task.Delay(1000, stoppingToken);
