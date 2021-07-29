@@ -1,17 +1,14 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace RabbitProducerWorker
+namespace RabbitConsumerWorker
 {
     public static class Startup
     {
         public static void ConfigureServices(HostBuilderContext hostContext, IServiceCollection services)
         {
-            services.Configure<ProducerConfig>(hostContext.Configuration.GetSection(nameof(ProducerConfig)));
+            services.Configure<ConsumerConfig>(hostContext.Configuration.GetSection(nameof(ConsumerConfig)));
             services.AddHostedService<Worker>();
-
-            services.AddSingleton<IEventModelProvider, EventModelProvider>();
-            services.AddSingleton<IEventPublisher, RabbitPublisher>();
         }
     }
 }

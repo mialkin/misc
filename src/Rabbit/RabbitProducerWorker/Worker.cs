@@ -4,45 +4,32 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using RabbitMQ.Client;
 
 namespace RabbitProducerWorker
 {
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
-        private static IModel? _channel;
-        private readonly ProducerConfig _producerConfig;
+        private readonly IEventPublisher _eventPublisher;
+        private readonly IEventModelProvider _eventModelProvider;
 
-        public Worker(ILogger<Worker> logger, IOptions<ProducerConfig> producerConfigOptions)
+        public Worker(ILogger<Worker> logger, IEventPublisher eventPublisher, IEventModelProvider eventModelProvider)
         {
             _logger = logger;
-            _producerConfig = producerConfigOptions.Value;
-
-            var factory = new ConnectionFactory {HostName = _producerConfig.Hostname};
-            var connection = factory.CreateConnection();
-            _channel = connection.CreateModel();
-            _channel.QueueDeclare(queue: _producerConfig.Queue, durable: true, exclusive: false, autoDelete: false,
-                arguments: null);
+            _eventPublisher = eventPublisher;
+            _eventModelProvider = eventModelProvider;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                EventModel eventModel = EventModelGetter.GetEventModel();
-                string message = JsonSerializer.Serialize(eventModel);
+                EventModel model = _eventModelProvider.GetEventModel();
+                string message = JsonSerializer.Serialize(model);
                 // ReSharper disable once TemplateIsNotCompileTimeConstantProblem
                 _logger.LogInformation(message);
 
-                var body = Encoding.UTF8.GetBytes(message);
-
-                var properties = _channel.CreateBasicProperties();
-                properties.Persistent = true;
-                _channel.BasicPublish(exchange: "", routingKey: _producerConfig.RoutingKey, basicProperties: properties,
-                    body: body);
-
+                _eventPublisher.Publish(Encoding.UTF8.GetBytes(message));
                 await Task.Delay(1000, stoppingToken);
             }
         }
