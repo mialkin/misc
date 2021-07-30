@@ -38,7 +38,7 @@ namespace RabbitConsumerWorker
             consumer.Received += ConsumerOnReceived;
 
             _channel.BasicConsume(queue: _consumerConfig.Queue,
-                autoAck: true,
+                autoAck: false,
                 consumer: consumer);
 
             _consuming = true;
@@ -50,6 +50,8 @@ namespace RabbitConsumerWorker
             var body = ea.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
             Console.WriteLine(message);
+            _channel.BasicAck(ea.DeliveryTag, false);
+            
             Thread.Sleep(TimeSpan.FromSeconds(1));
         }
 
