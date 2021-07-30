@@ -9,19 +9,17 @@ namespace RabbitConsumerWorker
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
+        private readonly IEventConsumer _eventConsumer;
 
-        public Worker(ILogger<Worker> logger)
+        public Worker(ILogger<Worker> logger, IEventConsumer eventConsumer)
         {
             _logger = logger;
+            _eventConsumer = eventConsumer;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            while (!stoppingToken.IsCancellationRequested)
-            {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(1000, stoppingToken);
-            }
+            await _eventConsumer.StartConsuming();
         }
     }
 }

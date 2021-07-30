@@ -1,6 +1,6 @@
 namespace RabbitProducerWorker
 {
-    public interface IEventPublisher
+    public interface IEventProducer
     {
         void Publish(byte[] message);
     }

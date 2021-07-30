@@ -4,6 +4,5 @@ namespace RabbitConsumerWorker
     {
         public string Hostname { get; set; }
         public string Queue { get; set; }
-        public string RoutingKey { get; set; }
     }
 }

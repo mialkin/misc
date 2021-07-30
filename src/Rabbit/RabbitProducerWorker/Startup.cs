@@ -11,7 +11,7 @@ namespace RabbitProducerWorker
             services.AddHostedService<Worker>();
 
             services.AddSingleton<IEventModelProvider, EventModelProvider>();
-            services.AddSingleton<IEventPublisher, RabbitPublisher>();
+            services.AddSingleton<IEventProducer, RabbitProducer>();
         }
     }
 }

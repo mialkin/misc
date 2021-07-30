@@ -9,6 +9,8 @@ namespace RabbitConsumerWorker
         {
             services.Configure<ConsumerConfig>(hostContext.Configuration.GetSection(nameof(ConsumerConfig)));
             services.AddHostedService<Worker>();
+
+            services.AddSingleton<IEventConsumer, RabbitEventConsumer>();
         }
     }
 }

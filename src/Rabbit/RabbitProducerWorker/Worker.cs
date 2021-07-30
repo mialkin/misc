@@ -10,13 +10,13 @@ namespace RabbitProducerWorker
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
-        private readonly IEventPublisher _eventPublisher;
+        private readonly IEventProducer _eventProducer;
         private readonly IEventModelProvider _eventModelProvider;
 
-        public Worker(ILogger<Worker> logger, IEventPublisher eventPublisher, IEventModelProvider eventModelProvider)
+        public Worker(ILogger<Worker> logger, IEventProducer eventProducer, IEventModelProvider eventModelProvider)
         {
             _logger = logger;
-            _eventPublisher = eventPublisher;
+            _eventProducer = eventProducer;
             _eventModelProvider = eventModelProvider;
         }
 
@@ -29,9 +29,16 @@ namespace RabbitProducerWorker
                 // ReSharper disable once TemplateIsNotCompileTimeConstantProblem
                 _logger.LogInformation(message);
 
-                _eventPublisher.Publish(Encoding.UTF8.GetBytes(message));
+                _eventProducer.Publish(Encoding.UTF8.GetBytes(message));
                 await Task.Delay(1000, stoppingToken);
             }
+        }
+
+        public override Task StopAsync(CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("Stopping Worker service");
+
+            return base.StopAsync(cancellationToken);
         }
     }
 }
