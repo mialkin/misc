@@ -19,10 +19,9 @@ namespace RabbitConsumerWorker
         {
             _consumerConfig = consumerConfig.Value;
 
-            var factory = new ConnectionFactory {HostName = _consumerConfig.Hostname, DispatchConsumersAsync = true};
+            var factory = new ConnectionFactory {HostName = _consumerConfig.Hostname};
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
-            
             _channel.QueueDeclare(queue: _consumerConfig.Queue,
                 durable: true,
                 exclusive: false,
@@ -35,7 +34,7 @@ namespace RabbitConsumerWorker
             if (_consuming)
                 return Task.CompletedTask;
 
-            var consumer = new AsyncEventingBasicConsumer(_channel);
+            var consumer = new EventingBasicConsumer(_channel);
             consumer.Received += ConsumerOnReceived;
 
             _channel.BasicConsume(queue: _consumerConfig.Queue,
@@ -46,17 +45,14 @@ namespace RabbitConsumerWorker
             return Task.CompletedTask;
         }
 
-        private async Task ConsumerOnReceived(object? sender, BasicDeliverEventArgs ea)
+        private void ConsumerOnReceived(object? sender, BasicDeliverEventArgs ea)
         {
             var body = ea.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
             Console.WriteLine(message);
-            
-            //_channel.BasicReject(ea.DeliveryTag, false);
             _channel.BasicAck(ea.DeliveryTag, false);
-
-            await Task.Delay(10);
-
+            
+            Thread.Sleep(TimeSpan.FromSeconds(1));
         }
 
         public void Dispose()
