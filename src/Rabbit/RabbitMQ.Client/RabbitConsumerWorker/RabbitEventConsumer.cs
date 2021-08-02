@@ -38,6 +38,7 @@ namespace RabbitConsumerWorker
             var consumer = new AsyncEventingBasicConsumer(_channel);
             consumer.Received += ConsumerOnReceived;
 
+            _channel.BasicQos(0, 10, false);
             _channel.BasicConsume(queue: _consumerConfig.Queue,
                 autoAck: false,
                 consumer: consumer);
@@ -52,11 +53,9 @@ namespace RabbitConsumerWorker
             var message = Encoding.UTF8.GetString(body);
             Console.WriteLine(message);
             
-            //_channel.BasicReject(ea.DeliveryTag, false);
             _channel.BasicAck(ea.DeliveryTag, false);
 
-            await Task.Delay(10);
-
+            await Task.Delay(1000);
         }
 
         public void Dispose()
