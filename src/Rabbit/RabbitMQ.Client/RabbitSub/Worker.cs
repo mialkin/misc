@@ -19,6 +19,7 @@ namespace RabbitSub
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            _logger.LogInformation("Start consuming");
             await _eventConsumer.StartConsuming();
         }
     }
