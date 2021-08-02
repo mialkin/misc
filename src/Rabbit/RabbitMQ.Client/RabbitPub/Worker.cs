@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -31,7 +30,7 @@ namespace RabbitPub
                 _logger.LogInformation(message);
 
                 _eventProducer.Publish(Encoding.UTF8.GetBytes(message));
-                await Task.Delay(1000, stoppingToken);
+                await Task.Delay(250, stoppingToken);
             }
         }
     }
