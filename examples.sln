@@ -13,6 +13,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rabbit", "Rabbit", "{FCAF13CC-0E2B-4944-8034-09A371500DCA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMQ.Client", "RabbitMQ.Client", "{1DCA088C-85BE-472F-8964-8BEC05ED7AB1}"
+ProjectSection(SolutionItems) = preProject
+	src\Rabbit\docker-compose.yaml = src\Rabbit\docker-compose.yaml
+	src\Rabbit\readme.md = src\Rabbit\readme.md
+EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitProducerWorker", "src\Rabbit\RabbitMQ.Client\RabbitProducerWorker\RabbitProducerWorker.csproj", "{EAC3F826-F1AF-4A8B-A61E-403382E5E3D5}"
 EndProject
@@ -25,6 +29,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EasyNetQ", "EasyNetQ", "{1F9CB41E-6C17-4C2E-8AEE-1020D923FB18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyNetQProducer", "src\Rabbit\EasyNetQ\EasyNetQProducer\EasyNetQProducer.csproj", "{75DAA70E-6225-48DB-B4C5-0F03C607BCF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMisc", "src\WebMisc\WebMisc.csproj", "{FFC5A51D-6643-45B0-8BBC-2ED039DF806C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,6 +74,10 @@ Global
 		{75DAA70E-6225-48DB-B4C5-0F03C607BCF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75DAA70E-6225-48DB-B4C5-0F03C607BCF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75DAA70E-6225-48DB-B4C5-0F03C607BCF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFC5A51D-6643-45B0-8BBC-2ED039DF806C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFC5A51D-6643-45B0-8BBC-2ED039DF806C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFC5A51D-6643-45B0-8BBC-2ED039DF806C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFC5A51D-6643-45B0-8BBC-2ED039DF806C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{50110DE2-EC87-48D3-8F1F-32C45E940C03} = {48A3098B-AF74-43EE-9466-967C66D8AC15}
