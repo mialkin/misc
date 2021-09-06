@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Contracts", "src\Mas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Components", "src\MassTransit\Sample.Components\Sample.Components.csproj", "{210A5A2A-97B5-42D5-9F16-E68AD6026748}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidationTest", "src\FluentValidationTest\FluentValidationTest.csproj", "{6529C9D8-437B-4C1D-9550-259683AE36AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,10 @@ Global
 		{210A5A2A-97B5-42D5-9F16-E68AD6026748}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{210A5A2A-97B5-42D5-9F16-E68AD6026748}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{210A5A2A-97B5-42D5-9F16-E68AD6026748}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6529C9D8-437B-4C1D-9550-259683AE36AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6529C9D8-437B-4C1D-9550-259683AE36AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6529C9D8-437B-4C1D-9550-259683AE36AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6529C9D8-437B-4C1D-9550-259683AE36AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{50110DE2-EC87-48D3-8F1F-32C45E940C03} = {48A3098B-AF74-43EE-9466-967C66D8AC15}
