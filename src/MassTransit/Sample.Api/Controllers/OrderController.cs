@@ -23,9 +23,15 @@ namespace Sample.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Guid id, string customerNumber)
         {
-            var response = await _submitOrderRequestClient.GetResponse<>()
-            
-            return Ok();
+            Response<OrderSubmissionAccepted> response =
+                await _submitOrderRequestClient.GetResponse<OrderSubmissionAccepted>(new
+                {
+                    OrderId = id,
+                    Timestamp = InVar.Timestamp,
+                    CustomerNumber = customerNumber
+                });
+
+            return Ok(response.Message);
         }
     }
 }

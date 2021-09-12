@@ -21,12 +21,12 @@ namespace Sample.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMassTransit(cfg =>
+            services.AddMediator(options =>
             {
-                cfg.AddConsumer<SubmitOrderConsumer>();
-                cfg.AddRequestClient<SubmitOrder>();
+                options.AddConsumer<SubmitOrderConsumer>();
+                options.AddRequestClient<SubmitOrder>();
             });
-            
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -44,11 +44,8 @@ namespace Sample.Api
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
