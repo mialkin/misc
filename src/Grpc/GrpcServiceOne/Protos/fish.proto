@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcServiceOne";
+
+package fish;
+
+service Fisher {
+  rpc Fish(FishRequest) returns (FishResponse);
+  rpc FishOverTime(FishOverTimeRequest) returns (stream FishOverTimeResponse);
+}
+
+message FishRequest {
+  int32 number = 1;
+}
+
+message FishResponse {
+  string message = 1;
+}
+
+message FishOverTimeRequest {
+}
+
+message FishOverTimeResponse {
+  string message = 1;
+}
+
